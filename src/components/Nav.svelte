@@ -1,19 +1,10 @@
 <script>
-  import {onMount} from "svelte";
   export let segment;
   let checked = false;
-
-  $: {
-    console.log(checked);
-    console.log(segment);
-  }
 
   function resetCheckBox(e){
     checked = false;
   }
-  // onMount(()=>{
-  //   console.log('Nav mounted');
-  // })
 </script>
 
 <style>
