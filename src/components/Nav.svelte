@@ -1,109 +1,148 @@
 <script>
-  import { onDestroy, onMount } from "svelte";
-  import { stores } from "@sapper/app";
-
   export let segment;
-  const { session } = stores();
-
-  let user;
-  const unsubscribe = session.subscribe(value => (user = value.user));
-
-  onDestroy(unsubscribe);
+  let checked = false;
+  // console.log(segment);
 </script>
 
 <style>
-  nav {
-    border-bottom: 1px solid rgba(255, 62, 0, 0.1);
-    font-weight: 300;
-    padding: 0 1em;
-  }
+  /* nav {
+    background-color: rgb(238, 238, 189);
+    min-height: 1rem;
+  } */
 
-  ul {
-    margin: 0;
-    padding: 0;
-  }
-
-  /* clearfix */
-  ul::after {
-    content: "";
+  nav > div {
     display: block;
-    clear: both;
-  }
-
-  li {
-    display: block;
-    float: left;
-  }
-
-  [aria-current] {
     position: relative;
-    display: inline-block;
-  }
+    top: 30px;
+    left: 30px;
 
-  [aria-current]::after {
-    position: absolute;
-    content: "";
-    width: calc(100% - 1em);
-    height: 2px;
-    background-color: rgb(255, 62, 0);
-    display: block;
-    bottom: -1px;
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   a {
     text-decoration: none;
-    padding: 1em 0.5em;
+    color: #232323;
+
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    /* color: tomato; */
+    font-weight: bold;
+    transition: font-weight 0.5s ease-in-out;
+  }
+
+  input {
     display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    /* hide this */
+    z-index: 2;
+    /* and place it over the hamburger */
+
+    -webkit-touch-callout: none;
+  }
+
+  span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+
+    background: black;
+    border-radius: 3px;
+
+    z-index: 1;
+
+    transform-origin: 4px 0px;
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+      background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+  }
+
+  span:first-child {
+    transform-origin: 0% 0%;
+  }
+
+  span:nth-child(2) {
+    transform-origin: 0% 100%;
+  }
+
+  input:checked ~ span {
+    opacity: 1;
+    transform: translateY(-1px) rotate(45deg);
+    background: #232323;
+  }
+
+  input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
+
+  input:checked ~ span:nth-last-child(2) {
+    transform: translateY(2px) rotate(-45deg);
+  }
+
+  ul {
+    position: absolute;
+    width: 300px;
+    margin: -100px 0 0 -50px;
+    padding: 50px;
+    padding-top: 125px;
+
+    /* background: #ededed; */
+    background: rgba(207, 207, 201, 0.7);
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  }
+
+  li {
+    padding: 10px 0;
+    font-size: 22px;
+  }
+
+  input:checked ~ ul {
+    transform: none;
+  }
+
+  @media (min-width: 480px) {
   }
 </style>
 
 <nav>
-  <ul>
-    <li>
-      <a aria-current={segment === undefined ? 'page' : undefined} href=".">
-        home
-      </a>
-    </li>
-    <li>
-      <a aria-current={segment === 'about' ? 'page' : undefined} href="about">
-        about
-      </a>
-    </li>
+  <div>
+    <input type="checkbox" {checked} />
+    <span />
+    <span />
+    <span />
 
-    <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-    <li>
-      <a
-        rel="prefetch"
-        aria-current={segment === 'blog' ? 'page' : undefined}
-        href="blog">
-        blog
-      </a>
-    </li>
-    {#if !user}
+    <ul>
       <li>
-        <a aria-current={segment === 'login' ? 'page' : undefined} href="login">
-          login
-        </a>
+        <a href="#">Home</a>
       </li>
-    {/if}
-    <li>
-      <a
-        aria-current={segment === 'products' ? 'page' : undefined}
-        href="products">
-        products
-      </a>
-    </li>
-    {#if user}
       <li>
-        <a aria-current={segment === 'logout' ? 'page' : undefined}
-          href="logout">
-          logout
-        </a>
+        <a href="#">Shop</a>
       </li>
-    {/if}
-  </ul>
-  {#if user}
-    <p>Welcome, {user.firstname}</p>
-  {/if}
+      <li>
+        <a href="#">Contact Us</a>
+      </li>
+
+    </ul>
+  </div>
 </nav>

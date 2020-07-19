@@ -1,46 +1,68 @@
+<script context="module">
+  export async function preload({ params, query }){
+    const res = await this.fetch("splash.json");
+    const images = await res.json()
+    return { images };
+  }
+</script>
+
+<script>
+  import { onMount, onDestroy } from "svelte";
+  import { fade } from "svelte/transition";
+  export let images;
+  let visible = false;
+  let interval;
+  let activeIndex = 0;
+
+  onMount(() => {
+    // visible = true;
+    interval = setInterval(() => {
+      let next = activeIndex + 1;
+      activeIndex = next >= images.length ? 0 : next;
+    }, 4000);
+    
+  });
+
+  onDestroy(()=>{
+    clearInterval(interval);
+  });
+</script>
+
 <style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
 
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
+  div {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+  }
 
-	figure {
-		margin: 0 0 1em 0;
-	}
+  img {
+    display: block;
+    margin: auto;
+    max-width: 60%;
+    position: absolute;
+    border: 2px solid grey;
+    border-radius: 4px;
+  }
 
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
+  /* @media only screen and (min-width: 480px) {
+    img {
+      display: block;
+      margin: auto;
+      max-width: 80%;
+      position: absolute;
+    }
+  } */
 </style>
 
 <svelte:head>
-	<title>Sapper project template</title>
+  <title>Project X</title>
 </svelte:head>
 
-<h1>Great success!</h1>
-
-<figure>
-	<img alt='Success Kid' src='successkid.jpg'>
-	<figcaption>Have fun with Sapper!</figcaption>
-</figure>
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+<div>
+  {#each images as image, i}
+    {#if activeIndex == i}
+      <img transition:fade={{ delay:1000, duration: 800}} width="400" src={image.url} alt="" />
+    {/if}
+  {/each}
+</div>
