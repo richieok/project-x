@@ -1,14 +1,26 @@
 <script>
+  import {onMount} from "svelte";
   export let segment;
   let checked = false;
-  // console.log(segment);
+
+  $: {
+    console.log(checked);
+    console.log(segment);
+  }
+
+  function resetCheckBox(e){
+    checked = false;
+  }
+  // onMount(()=>{
+  //   console.log('Nav mounted');
+  // })
 </script>
 
 <style>
-  /* nav {
-    background-color: rgb(238, 238, 189);
-    min-height: 1rem;
-  } */
+  nav {
+    background-color: rgb(207, 207, 201);
+    min-height: 2rem;
+  }
 
   nav > div {
     display: block;
@@ -127,20 +139,20 @@
 
 <nav>
   <div>
-    <input type="checkbox" {checked} />
+    <input type="checkbox" bind:checked={checked} />
     <span />
     <span />
     <span />
 
     <ul>
       <li>
-        <a href="#">Home</a>
+        <a href="#" on:click={resetCheckBox}>Home</a>
       </li>
       <li>
-        <a href="#">Shop</a>
+        <a href="shop" on:click={resetCheckBox}>Shop</a>
       </li>
       <li>
-        <a href="#">Contact Us</a>
+        <a href="#" on:click={resetCheckBox}>Contact Us</a>
       </li>
 
     </ul>
