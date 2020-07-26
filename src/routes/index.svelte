@@ -16,6 +16,7 @@
 
   onMount(() => {
     // visible = true;
+    console.log('Mounted');
     interval = setInterval(() => {
       let next = activeIndex + 1;
       activeIndex = next >= images.length ? 0 : next;
@@ -24,6 +25,7 @@
   });
 
   onDestroy(()=>{
+    console.log('Destroyed');
     clearInterval(interval);
   });
 </script>

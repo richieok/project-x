@@ -10,7 +10,7 @@
 <style>
   nav {
     background-color: rgb(207, 207, 201);
-    min-height: 2rem;
+    min-height: 4rem;
   }
 
   nav > div {
