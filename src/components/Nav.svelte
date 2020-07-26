@@ -137,7 +137,7 @@
 
     <ul>
       <li>
-        <a href="#" on:click={resetCheckBox}>Home</a>
+        <a href="/" on:click={resetCheckBox}>Home</a>
       </li>
       <li>
         <a href="shop" on:click={resetCheckBox}>Shop</a>
