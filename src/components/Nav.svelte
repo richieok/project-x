@@ -143,7 +143,7 @@
         <a href="shop" on:click={resetCheckBox}>Shop</a>
       </li>
       <li>
-        <a href="#" on:click={resetCheckBox}>Contact Us</a>
+        <a href="contact" on:click={resetCheckBox}>Contact Us</a>
       </li>
 
     </ul>

@@ -50,9 +50,9 @@
 
 <TransitionWrapper>
   <div>
-    <!-- <img width="400" src={images[0].url} alt="" /> -->
-    {#each images as image}
+    <img width="400" height="600" src={images[0].url} alt="" />
+    <!-- {#each images as image}
       <img width="400" height="600" src={image.url} alt="" />
-    {/each}
+    {/each} -->
   </div>
 </TransitionWrapper>
