@@ -11,9 +11,9 @@
 <style>
   article {
     padding: 1em;
-    box-shadow: 10px 10px rgba(97, 96, 95, 0.3);
+    box-shadow: 10px 10px rgba(15, 14, 13, 0.3);
     margin: 10px;
-    background-color: beige;
+    background-color: rgb(207, 207, 201);;
   }
   img {
     border: solid 2px grey;

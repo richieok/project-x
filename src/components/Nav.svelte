@@ -104,7 +104,7 @@
     padding-top: 125px;
 
     /* background: #ededed; */
-    background: rgba(207, 207, 201, 0.7);
+    background: rgba(207, 207, 201, 0.9);
     list-style-type: none;
     -webkit-font-smoothing: antialiased;
     /* to stop flickering of text in safari */
