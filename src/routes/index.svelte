@@ -1,37 +1,24 @@
-<script context="module">
-  export async function preload({ params, query }){
-    const res = await this.fetch("splash.json");
-    const images = await res.json()
-    return { images };
-  }
-</script>
-
 <script>
   import { onMount, onDestroy } from "svelte";
   import { fade } from "svelte/transition";
-  export let images;
+  import TransitionWrapper from "../components/TransitionWrapper.svelte";
+  // export let images;
   let visible = false;
   let interval;
   let activeIndex = 0;
-
-  onMount(() => {
-    // visible = true;
-    console.log('Mounted');
-    interval = setInterval(() => {
-      let next = activeIndex + 1;
-      activeIndex = next >= images.length ? 0 : next;
-    }, 4000);
-    
-  });
-
-  onDestroy(()=>{
-    console.log('Destroyed');
-    clearInterval(interval);
-  });
+  const images = [
+    {
+      url:
+        "https://marketplaceapp-test-bucket.s3.eu-west-2.amazonaws.com/public/sitting-on-concrete.jpg"
+    },
+    {
+      url:
+        "https://marketplaceapp-test-bucket.s3.eu-west-2.amazonaws.com/public/two-women-standing-beside-each-other.jpg"
+    }
+  ];
 </script>
 
 <style>
-
   div {
     margin-top: 2rem;
     display: flex;
@@ -40,11 +27,11 @@
 
   img {
     display: block;
-    margin: auto;
-    max-width: 60%;
-    position: absolute;
+    /* margin: auto; */
+    /* max-width: 60%; */
+    /* position: absolute; */
     border: 2px solid grey;
-    border-radius: 4px;
+    border-radius: 2px;
   }
 
   /* @media only screen and (min-width: 480px) {
@@ -61,10 +48,11 @@
   <title>Project X</title>
 </svelte:head>
 
-<div>
-  {#each images as image, i}
-    {#if activeIndex == i}
-      <img transition:fade={{ delay:1000, duration: 800}} width="400" src={image.url} alt="" />
-    {/if}
-  {/each}
-</div>
+<TransitionWrapper>
+  <div>
+    <!-- <img width="400" src={images[0].url} alt="" /> -->
+    {#each images as image}
+      <img width="400" height="600" src={image.url} alt="" />
+    {/each}
+  </div>
+</TransitionWrapper>
