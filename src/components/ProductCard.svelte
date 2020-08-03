@@ -32,8 +32,8 @@
 
 <article>
   <h3>
-    <a href="products/{productParam}">{productName}</a>
+    <a href="shop/{productParam}">{productName}</a>
   </h3>
-  <a href="products/{productParam}"><img src="https://marketplaceapp-test-bucket.s3.eu-west-2.amazonaws.com/public/{images[0].url}" alt={images[0].alt} width="200px" ></a>
+  <a href="shop/{productParam}"><img src="https://marketplaceapp-test-bucket.s3.eu-west-2.amazonaws.com/public/{images[0].url}" alt={images[0].alt} width="200px" ></a>
   <!-- <img src="https://marketplaceapp-test-bucket.s3.eu-west-2.amazonaws.com/public/{images[0].url}" alt={images[0].alt} width="200px" > -->
 </article>

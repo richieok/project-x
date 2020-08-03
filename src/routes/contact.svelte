@@ -1,5 +1,11 @@
+<script>
+    import TransitionWrapper from "../components/TransitionWrapper.svelte";
+</script>
+
 <svelte:head>
 	<title>Contact Us</title>
 </svelte:head>
 
-<h1>Contact Us</h1>
+<TransitionWrapper>
+    <h1>Contact Us</h1>
+</TransitionWrapper>

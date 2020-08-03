@@ -20,9 +20,11 @@
 
 <style>
   div {
-    margin-top: 2rem;
+    /* margin-top: 2rem;
     display: flex;
-    justify-content: center;
+    justify-content: center; */
+    display: grid;
+    place-items: center;
   }
 
   img {

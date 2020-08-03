@@ -1,17 +1,15 @@
-import {init} from "@lib/mongo";
+import { init } from "@lib/mongo";
 
 export async function get(req, res, next) {
-
+    const { slug } = req.params;
     const { db } = await init();
-    const data = await db.collection('products').find({});
-    let products = await data.toArray();
-    // console.log('Products >>> ');
-    // console.log(products);
-    if (products){
+    const data = await db.collection('products').findOne({productParam: slug});
+    console.log(data);
+    if (data){
         res.writeHead(200, {
             'Content-Type': 'application/json'
         });
-        res.end(JSON.stringify(products));
+        res.end(JSON.stringify(data));
     } else {
         res.writeHead(400, {
             'Content-Type': 'application/json'
